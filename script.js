@@ -43,46 +43,158 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     /* =========================
-        5. MODAL (SIMPLIFICADO)
+        5. MODAL (IMAGENS) - protegido
     ========================== */
 
     const modal = document.getElementById('modal');
-    if (!modal) return;
+    if (modal) {
+        const modalImg = modal.querySelector('.modal-img');
+        const modalCaption = modal.querySelector('#modal-caption');
+        const closeBtn = modal.querySelector('.modal-close');
+        const overlay = modal.querySelector('.modal-overlay');
 
-    const modalImg = modal.querySelector('.modal-img');
-    const modalCaption = modal.querySelector('#modal-caption');
-    const closeBtn = modal.querySelector('.modal-close');
-    const overlay = modal.querySelector('.modal-overlay');
+        const items = Array.from(
+            document.querySelectorAll('img.modal-trigger')
+        ).filter(img => !img.closest('.gallery-thumbs'));
 
-    const items = Array.from(
-        document.querySelectorAll('img.modal-trigger')
-    ).filter(img => !img.closest('.gallery-thumbs'));
+        let index = 0;
 
-    let index = 0;
+        function openModal(i) {
+            index = i;
+            const el = items[index];
+            modalImg.src = el.dataset.image || el.src;
+            modalCaption.textContent = el.dataset.caption || el.alt || '';
+            modal.classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
 
-    function openModal(i) {
-        index = i;
-        const el = items[index];
-        modalImg.src = el.dataset.image || el.src;
-        modalCaption.textContent = el.dataset.caption || el.alt || '';
-        modal.classList.add('show');
+        function closeModal() {
+            modal.classList.remove('show');
+            document.body.style.overflow = '';
+        }
+
+        items.forEach((img, i) => {
+            img.style.cursor = 'zoom-in';
+            img.addEventListener('click', e => {
+                e.preventDefault();
+                openModal(i);
+            });
+        });
+
+        closeBtn.addEventListener('click', closeModal);
+        overlay.addEventListener('click', closeModal);
+    }
+
+    /* Modal dos planos */
+
+    const planModal = document.getElementById('plan-modal');
+    const planModalClose = planModal && planModal.querySelector('.plan-modal-close');
+    const planModalOverlay = planModal && planModal.querySelector('.plan-modal-overlay');
+    const planModalTitle = planModal && document.getElementById('plan-modal-title');
+    const planModalServices = planModal && document.getElementById('plan-modal-services');
+    const planModalValues = planModal && document.getElementById('plan-modal-values');
+
+    const plansData = {
+        'mentoria-pericia': {
+            title: 'Mentoria em Perícia',
+            services: [
+                'Orientação na elaboração de laudos e metodologia',
+                'Revisão de laudos e pareceres',
+                'Acompanhamento em diligências e vistorias'
+            ],
+            values: 'Valores e condições a combinar. Pode ser por hora, pacote ou assinatura. (Texto editável)'
+        },
+        'mentoria-mercado': {
+            title: 'Mentoria de Ingresso no Mercado',
+            services: [
+                'Formação prática para ingresso no mercado',
+                'Estratégias de posicionamento e networking',
+                'Modelos de petição e roteiro de laudo'
+            ],
+            values: 'Valores e condições a combinar. Opções de pacotes para iniciantes. (Texto editável)'
+        },
+        'assistencia-tecnica': {
+            title: 'Assistência Técnica',
+            services: [
+                'Acompanhamento técnico em campo',
+                'Elaboração de pareceres e laudos',
+                'Pareceres técnicos e planejamento de medidas'
+            ],
+            values: 'Valores e condições a combinar. Projetos e contratos sob demanda. (Texto editável)'
+        }
+    };
+
+    function openPlanModal(key) {
+        if (!planModal || !plansData[key]) return;
+
+        const data = plansData[key];
+
+        planModalTitle.textContent = data.title;
+        planModalServices.innerHTML =
+            '<ul>' +
+                data.services.map(s => '<li>' + s + '</li>').join('') +
+            '</ul>';
+        planModalValues.textContent = data.values;
+
+        planModal.classList.add('show');
         document.body.style.overflow = 'hidden';
     }
 
-    function closeModal() {
-        modal.classList.remove('show');
+
+    function closePlanModal() {
+        if (!planModal) return;
+        planModal.classList.remove('show');
         document.body.style.overflow = '';
     }
 
-    items.forEach((img, i) => {
-        img.style.cursor = 'zoom-in';
-        img.addEventListener('click', e => {
-        e.preventDefault();
-        openModal(i);
+    document.querySelectorAll('.plan-btn').forEach(btn => {
+        btn.addEventListener('click', e => {
+            const key = btn.dataset.plan;
+            openPlanModal(key);
+            const select = document.getElementById('plano');
+            if (select) {
+                const dataTitle = plansData[key] && plansData[key].title;
+                Array.from(select.options).forEach(opt => opt.selected = (opt.text === dataTitle));
+                select.dispatchEvent(new Event('change'));
+            }
         });
     });
 
-    closeBtn.addEventListener('click', closeModal);
-    overlay.addEventListener('click', closeModal);
+    if (planModalClose) planModalClose.addEventListener('click', closePlanModal);
+    if (planModalOverlay) planModalOverlay.addEventListener('click', closePlanModal);
+
+    window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            closePlanModal();
+            if (modal) modal.classList.remove('show');
+        }
+    });
+
+    const planForm = document.getElementById('plan-form');
+    if (planForm) {
+        planForm.addEventListener('submit', e => {
+            e.preventDefault();
+            const nome = document.getElementById('nome').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const cpf = document.getElementById('cpf').value.trim();
+            const telefone = document.getElementById('telefone').value.trim();
+            const plano = document.getElementById('plano').value.trim();
+
+            if (!nome || !email || !cpf || !telefone || !plano) {
+                alert('Por favor, preencha todos os campos obrigatórios.');
+                return;
+            }
+
+            const message = `Olá, Mariana! Meu nome é ${nome}.\nTenho interesse no plano ${plano}.\nE-mail: ${email}\nCPF: ${cpf}\nTelefone: ${telefone}`;
+            const phone = '5524992644177';
+            const url = `https://api.whatsapp.com/send?phone=${phone}&text=${encodeURIComponent(message)}`;
+            window.open(url, '_blank');
+        });
+    }
+
+    // Mantém a observação para elementos recém adicionados
+    document.querySelectorAll('.hidden').forEach(el => observer.observe(el));
+
+    
 
     });
