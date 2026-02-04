@@ -98,29 +98,29 @@ document.addEventListener('DOMContentLoaded', () => {
         'mentoria-pericia': {
             title: 'Mentoria em Perícia',
             services: [
-                'Orientação na elaboração de laudos e metodologia',
-                'Revisão de laudos e pareceres',
-                'Acompanhamento em diligências e vistorias'
+                'ponto 1 - preco',
+                'ponto 2 - preco',
+                'ponto 3 - preco'
             ],
-            values: 'Valores e condições a combinar. Pode ser por hora, pacote ou assinatura. (Texto editável)'
+            values: 'colocar alguma coisa aqui'
         },
         'mentoria-mercado': {
             title: 'Mentoria de Ingresso no Mercado',
             services: [
-                'Formação prática para ingresso no mercado',
-                'Estratégias de posicionamento e networking',
-                'Modelos de petição e roteiro de laudo'
+                'ponto 1 - preco',
+                'ponto 2 - preco',
+                'ponto 3 - preco'
             ],
-            values: 'Valores e condições a combinar. Opções de pacotes para iniciantes. (Texto editável)'
+            values: 'colocar alguma coisa aqui'
         },
         'assistencia-tecnica': {
             title: 'Assistência Técnica',
             services: [
-                'Acompanhamento técnico em campo',
-                'Elaboração de pareceres e laudos',
-                'Pareceres técnicos e planejamento de medidas'
+                'ponto 1 - preco',
+                'ponto 2 - preco',
+                'ponto 3 - preco'
             ],
-            values: 'Valores e condições a combinar. Projetos e contratos sob demanda. (Texto editável)'
+            values: 'colocar alguma coisa aqui'
         }
     };
 
