@@ -113,6 +113,8 @@ blockquote {
         .hero { min-height: calc(100vh - 64px); align-items: flex-start; padding-top: 2.2rem; }
         .hero h1 { font-size: 2.4rem; }
         .hero p { font-size: 1rem; }
+        
+
 
         /* Stack columns into single column */
         .grid-sobre { grid-template-columns: 1fr; gap: 2rem; }
@@ -284,6 +286,13 @@ blockquote {
     position: relative;
     z-index: 2;
     max-width: 800px;
+}
+
+.hero-content a {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+    text-align: center;
 }
 
 .hero h1 {
