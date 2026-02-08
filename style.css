@@ -1542,40 +1542,47 @@ footer {
 
 /* Modal: horizontal layout on mobile for resultados pessoal only */
 @media (max-width: 600px) {
+    /* On narrow screens prefer a vertical stack so the image can use full width */
     .modal.modal--credenciais .modal-content {
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         gap: 0.6rem;
-        align-items: center;
-        justify-content: center;
+        align-items: stretch;
+        justify-content: flex-start;
         width: 94vw;
         max-width: 94vw;
-        max-height: 60vh;
-        padding: 0.6rem;
-        overflow: hidden;
+        max-height: 90vh; /* taller so landscape images can scale */
+        padding: 0.4rem;
+        overflow: auto;
         text-align: left;
+        box-sizing: border-box;
     }
 
+    /* Image should fill the available width (viewport) on mobile */
     .modal.modal--credenciais .modal-img {
-        max-width: 60%;
-        max-height: 100%;
-        width: auto;
-        height: auto;
+        width: 100% !important;
+        max-width: 100% !important;
+        height: auto !important;
+        max-height: 70vh; /* prevent exceeding viewport height */
+        object-fit: contain;
         border-radius: 6px;
-        object-fit: cover;
         box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        display: block;
+        margin: 0 auto;
     }
 
+    /* Caption sits below the image and uses full width */
     .modal.modal--credenciais .modal-caption {
-        max-width: 36%;
+        width: 100%;
         color: rgba(255,255,255,0.95);
         font-size: 0.95rem;
         overflow: auto;
         line-height: 1.2;
+        margin-top: 0.4rem;
     }
 
     .modal.modal--credenciais .modal-close {
-        top: -32px;
+        top: -28px;
         right: 0;
     }
 }
