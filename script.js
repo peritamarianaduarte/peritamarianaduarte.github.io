@@ -106,17 +106,14 @@ document.addEventListener('DOMContentLoaded', () => {
         'mentoria-pericia': {
             title: 'Mentoria em Perícia',
             services: [
-                '• Mentoria Individual - Energia Elétrica',
-                'Pacote Unitário (por tipo de laudo) – R$ 2.000,00',
-                'Pacote Completo (todos os laudos do módulo) – R$ 5.000,00',
+                '• Mentoria Individual – Elétrica',
+                'Unitário: R$ 2.000,00 | Completo: R$ 5.000,00',
                 '<br>',
-                '• Mentoria Individual - Água e Saneamento',
-                'Pacote Unitário (por tipo de laudo) – R$ 1.600,00',
-                'Pacote Completo (todos os laudos do módulo) – R$ 4.000,00',
+                '• Mentoria Individual – Água e Saneamento',
+                'Unitário: R$ 1.600,00 | Completo: R$ 4.000,00',
                 '<br>',
                 '• Mentoria em Grupo',
-                'Plano Essencial (4 encontros) – R$ 1.500,00',
-                'Pacote Completo (6 encontros) – R$ 2.200,00'
+                'Essencial: R$ 1.500,00 | Completo: R$ 2.200,00'
 
             ],
             values: 'Para detalhes sobre valores, condições de pagamento e prazos, favor entrar em contato via WhatsApp.'
@@ -125,6 +122,11 @@ document.addEventListener('DOMContentLoaded', () => {
             title: 'Mentoria de Ingresso no Mercado',
             services: [
                 '• Sessão individual - R$790,99',
+                '<br>',
+                '• Sessão em Grupo - R$1.500,00',
+                '<br>',
+                '• Sessão em Grupo - R$2.000,00',
+                '<br>',
                 '• Vantagem exclusiva - 50% do valor investido poderá ser abatido em futura mentoria técnica individual.'
             ],
             values: 'Para detalhes sobre valores, condições de pagamento e prazos, favor entrar em contato via WhatsApp.'
@@ -133,8 +135,11 @@ document.addEventListener('DOMContentLoaded', () => {
             title: 'Assistência Técnica',
             services: [
                 '• Análise técnica do processo + Quesitos iniciais - R$250.00',
-                '• Parecer Técnico/Manifestação sobre Informações - R$250.00',
+                '<br>',
+                '• Parecer Técnico e Manifestação sobre Informações - R$250.00',
+                '<br>',
                 '• Impugnação ao Laudo Pericial - R$250.00',
+                '<br>',
                 '• Acompanhamento Presencial de vistoria pericial - R$400.00'
 
             ],
