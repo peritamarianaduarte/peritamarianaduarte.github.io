@@ -63,13 +63,21 @@ document.addEventListener('DOMContentLoaded', () => {
             index = i;
             const el = items[index];
             modalImg.src = el.dataset.image || el.src;
-            modalCaption.textContent = el.dataset.caption || el.alt || '';
+            // if the clicked image is inside the 'Resultados' (#credenciais) section,
+            // add a specific class so we can style this modal differently
+            if (el.closest && el.closest('#credenciais')) {
+                modal.classList.add('modal--credenciais');
+            } else {
+                modal.classList.remove('modal--credenciais');
+            }
+
             modal.classList.add('show');
             document.body.style.overflow = 'hidden';
         }
 
         function closeModal() {
             modal.classList.remove('show');
+            modal.classList.remove('modal--credenciais');
             document.body.style.overflow = '';
         }
 
@@ -98,29 +106,39 @@ document.addEventListener('DOMContentLoaded', () => {
         'mentoria-pericia': {
             title: 'Mentoria em Perícia',
             services: [
-                'ponto 1 - preco',
-                'ponto 2 - preco',
-                'ponto 3 - preco'
+                '• Mentoria Individual - Energia Elétrica',
+                'Pacote Unitário (por tipo de laudo) – R$ 2.000,00',
+                'Pacote Completo (todos os laudos do módulo) – R$ 5.000,00',
+                '<br>',
+                '• Mentoria Individual - Água e Saneamento',
+                'Pacote Unitário (por tipo de laudo) – R$ 1.600,00',
+                'Pacote Completo (todos os laudos do módulo) – R$ 4.000,00',
+                '<br>',
+                '• Mentoria em Grupo',
+                'Plano Essencial (4 encontros) – R$ 1.500,00',
+                'Pacote Completo (6 encontros) – R$ 2.200,00'
+
             ],
-            values: 'colocar alguma coisa aqui'
+            values: 'Para detalhes sobre valores, condições de pagamento e prazos, favor entrar em contato via WhatsApp.'
         },
         'mentoria-mercado': {
             title: 'Mentoria de Ingresso no Mercado',
             services: [
-                'ponto 1 - preco',
-                'ponto 2 - preco',
-                'ponto 3 - preco'
+                '• Sessão individual - R$790,99',
+                '• Vantagem exclusiva - 50% do valor investido poderá ser abatido em futura mentoria técnica individual.'
             ],
-            values: 'colocar alguma coisa aqui'
+            values: 'Para detalhes sobre valores, condições de pagamento e prazos, favor entrar em contato via WhatsApp.'
         },
         'assistencia-tecnica': {
             title: 'Assistência Técnica',
             services: [
-                'ponto 1 - preco',
-                'ponto 2 - preco',
-                'ponto 3 - preco'
+                '• Análise técnica do processo + Quesitos iniciais - R$250.00',
+                '• Parecer Técnico/Manifestação sobre Informações - R$250.00',
+                '• Impugnação ao Laudo Pericial - R$250.00',
+                '• Acompanhamento Presencial de vistoria pericial - R$400.00'
+
             ],
-            values: 'colocar alguma coisa aqui'
+            values: 'Para detalhes sobre valores, condições de pagamento e prazos, favor entrar em contato via WhatsApp.'
         }
     };
 
@@ -132,7 +150,7 @@ document.addEventListener('DOMContentLoaded', () => {
         planModalTitle.textContent = data.title;
         planModalServices.innerHTML =
             '<ul>' +
-                data.services.map(s => '<li>' + s + '</li>').join('') +
+                data.services.map(s => '<ul>' + s + '</ul>').join('') +
             '</ul>';
         planModalValues.textContent = data.values;
 
@@ -198,3 +216,29 @@ document.addEventListener('DOMContentLoaded', () => {
     
 
     });
+
+    // Carousel interno dos resultados 
+    (function initCredenciaisCarousel(){
+        const container = document.querySelector('#credenciais .product-card--large .card-carousel');
+        if (!container) return;
+
+        const slidesEl = container.querySelector('.slides');
+        const slides = Array.from(slidesEl.querySelectorAll('img'));
+        const prev = container.querySelector('.carousel-prev');
+        const next = container.querySelector('.carousel-next');
+        let idx = 0;
+
+        function show(i){
+            idx = (i + slides.length) % slides.length;
+            slidesEl.style.transform = `translateX(${ -idx * 100 }%)`;
+        }
+
+        function nextSlide(){ show(idx + 1); }
+        function prevSlide(){ show(idx - 1); }
+
+        if (next) next.addEventListener('click', e => { e.preventDefault(); nextSlide(); });
+        if (prev) prev.addEventListener('click', e => { e.preventDefault(); prevSlide(); });
+
+        // Keep simple: no autoplay. Images remain clickable to open modal (handled elsewhere).
+        show(0);
+    })();

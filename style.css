@@ -63,7 +63,7 @@ blockquote {
     width: 60px;
     background-color: var(--gold);
     margin: 1rem 0 2rem 0;
-    /* Mobile overrides: improved hamburger menu and layout on small screens */
+    /*menu hamburguer melhorado */
     @media (max-width: 768px) {
         .hamburger { display: block; z-index: 1300; }
 
@@ -410,6 +410,7 @@ blockquote {
     justify-content: space-around;
     flex-wrap: wrap;
     text-align: center;
+    margin-top: -45px;
 }
 
 .stat-item {
@@ -544,6 +545,108 @@ blockquote {
     background: rgba(14, 30, 55, 0.9);
 }
 
+/* --- Credenciais: card grande --- */
+#credenciais .cred-card-wrapper {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.25rem;
+    padding: 2rem 0;
+}
+
+#credenciais .product-card--large {
+    width: 100%;
+    max-width: 1100px;
+    flex: none;
+    border-radius: 10px;
+    padding: 0;
+    overflow: hidden;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+}
+
+#credenciais .product-card--large img {
+    height: 480px !important;
+    object-fit: cover;
+    display: block;
+    border-bottom: 4px solid var(--gold);
+}
+
+/* Card internal carousel */
+#credenciais .card-carousel {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+#credenciais .card-carousel .slides {
+    display: flex;
+    transition: transform 0.45s ease;
+    width: 100%;
+}
+
+#credenciais .card-carousel .slides img {
+    flex: 0 0 100%;
+    width: 100%;
+    height: 480px !important;
+    object-fit: cover;
+    display: block;
+}
+
+#credenciais .carousel-prev,
+#credenciais .carousel-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(2,6,23,0.6);
+    color: var(--white);
+    border: none;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.35);
+}
+
+#credenciais .carousel-prev { left: 12px; }
+#credenciais .carousel-next { right: 12px; }
+
+#credenciais .carousel-prev:hover,
+#credenciais .carousel-next:hover { background: rgba(2,6,23,0.85); }
+
+#credenciais .product-card--large h3 {
+    font-size: 1.8rem;
+    margin: 1rem;
+    color: var(--white);
+}
+
+#credenciais .product-card--large p {
+    margin: 0 1rem 1.25rem;
+    color: rgba(255,255,255,0.9);
+    font-size: 1.05rem;
+}
+
+#credenciais .cred-text {
+    max-width: 900px;
+    text-align: center;
+    color: rgba(255,255,255,0.88);
+    font-size: 1rem;
+    padding: 0 1rem;
+}
+
+@media (max-width: 900px) {
+    #credenciais .product-card--large img {
+        height: 300px !important;
+    }
+    #credenciais .product-card--large h3 { font-size: 1.4rem; }
+}
+
 #produtos .product-header {
     color: var(--gold);
 }
@@ -649,6 +752,10 @@ blockquote {
     .contact-title {
         font-size: 1.6rem;
     }
+
+    blockquote {
+        padding: 50px 0;
+    }
 }
 
 /* Empilha os contatos verticalmente com largura fixa */
@@ -748,7 +855,10 @@ blockquote {
         max-width: 100%;
         width: 100%;
     }
+
+
 }
+
 
 .links-container.social-grid {
     display: grid;
@@ -1218,3 +1328,254 @@ footer {
 .delay-2 { animation-delay: 0.4s; }
 .delay-3 { animation-delay: 0.6s; }
 .delay-4 { animation-delay: 0.8s; }
+
+/* Layout for Conheça meu E-book section */
+.ebook-row {
+    display: flex;
+    gap: 2.5rem;
+    align-items: center;
+}
+
+.ebook-image {
+    flex: 0 0 48%;
+}
+
+.ebook-image img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.ebook-content {
+    flex: 1 1 52%;
+    color: var(--white);
+}
+
+@media (max-width: 900px) {
+    .ebook-row {
+        flex-direction: column;
+    }
+
+    .ebook-image,
+    .ebook-content {
+        flex: 1 1 100%;
+        width: 100%;
+    }
+}
+
+/* Mobile-specific tweaks for better legibility and spacing */
+@media (max-width: 600px) {
+    .hero {
+        align-items: flex-start;
+        padding-top: 2.4rem;
+        min-height: calc(100vh - 64px);
+    }
+
+    .hero h1 {
+        font-size: 2rem;
+        line-height: 1.05;
+    }
+
+    .hero p {
+        font-size: 0.95rem;
+        margin-bottom: 1.4rem;
+    }
+
+    .container { padding: 0 1rem; }
+
+    .ebook-row { gap: 1rem; padding: 0; }
+
+    .ebook-image img { max-height: 50vh; width: 100%; object-fit: cover; }
+
+    .ebook-content { padding: 0; }
+
+    .nav-links { gap: 0.8rem; }
+
+    .carousel-container { padding: 1rem 0 1.5rem 0; }
+}
+
+/* Additional mobile fixes: prevent blue gaps and horizontal overflow */
+@media (max-width: 600px) {
+    html, body { width: 100%; overflow-x: hidden; }
+
+    /* Ensure hero background covers full width and doesn't reveal body color */
+    .hero {
+        background-size: cover !important;
+        background-position: center center !important;
+        background-repeat: no-repeat !important;
+        padding: 0; /* container will handle spacing */
+        min-height: calc(100vh - 56px);
+    }
+
+    .hero-overlay { left: 0; right: 0; top: 0; bottom: 0; }
+
+    /* Remove container side bleed inside hero so background stays flush */
+    .hero .container { padding-left: 1rem; padding-right: 1rem; }
+
+    /* Prevent images from causing horizontal scroll */
+    img { max-width: 100%; height: auto; display: block; }
+
+    /* Ensure no unintended borders from product-card backgrounds */
+    .product-card, .result-card { border-radius: 0; }
+}
+
+/* Further mobile fixes: hero spacing, results card and planos wrapping */
+@media (max-width: 600px) {
+    /* Push hero content below fixed navbar and add breathing space */
+    .hero {
+        align-items: flex-start;
+        padding-top: 140px; /* more space so content sits lower on entry */
+        min-height: calc(100vh - 140px);
+    }
+
+    .hero-content {
+        padding-top: 0.25rem;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .hero h1 { font-size: 1.9rem; margin-top: 0.2rem; }
+    .hero p  { font-size: 0.95rem; }
+
+    .hero .btn-primary { margin-top: 1.1rem; }
+
+    /* Make 'Resultados - Pessoal' image area a shallow rectangle */
+    #credenciais .product-card--large img {
+        height: 180px !important;
+        object-fit: cover;
+    }
+
+    #credenciais .product-card--large { border-radius: 8px; overflow: hidden; }
+
+    /* Planos: ensure text wraps and cards fit mobile width */
+    .plans-grid { grid-template-columns: 1fr; gap: 1rem; }
+    .plan-card { width: 100%; box-sizing: border-box; padding: 1rem; }
+    .plan-card h3 { font-size: 1.05rem; }
+    .plan-card p { font-size: 0.95rem; word-break: break-word; }
+
+    /* Ensure header center spacing doesn't overflow */
+    .header-center .divider { margin-left: 0; margin-right: 0; }
+
+    /* Prevent any horizontal overflow from large images */
+    .carousel-container, .cred-card-wrapper { padding-left: 0.5rem; padding-right: 0.5rem; }
+}
+
+/* Force plan cards to ignore any inline widths and wrap properly on very small screens */
+@media (max-width: 420px) {
+    .plans-grid .plan-card,
+    .plans-grid .plan-card[style] {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+        box-sizing: border-box;
+        padding-left: 0.75rem;
+        padding-right: 0.75rem;
+    }
+
+    .plan-card h3 { font-size: 1rem; }
+    .plan-card p { font-size: 0.95rem; line-height: 1.3; }
+    .plan-card .btn-primary { width: 100%; }
+}
+
+/* === Product-card portrait: make 'alunos' a vertical scroller === */
+.product-card--portrait .card-carousel {
+    overflow: visible;
+}
+
+.product-card--portrait .card-carousel .slides {
+    display: block; /* stack images vertically */
+    max-height: 80vh; /* limit height and allow scrolling */
+    overflow-y: auto;
+    padding-right: 8px; /* space for scrollbar */
+}
+
+.product-card--portrait .card-carousel .slides img {
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    aspect-ratio: 4/5; /* portrait look */
+    object-fit: cover;
+    display: block;
+    margin: 0 auto 1rem auto;
+}
+
+.product-card--portrait .carousel-prev,
+.product-card--portrait .carousel-next {
+    display: none !important; /* hide controls for this card */
+}
+
+/* scrollbar styling for portrait scroller */
+.product-card--portrait .card-carousel .slides::-webkit-scrollbar {
+    width: 10px;
+}
+.product-card--portrait .card-carousel .slides::-webkit-scrollbar-track {
+    background: rgba(0,0,0,0.04);
+    border-radius: 6px;
+}
+.product-card--portrait .card-carousel .slides::-webkit-scrollbar-thumb {
+    background: var(--gold);
+    border-radius: 6px;
+}
+
+/* Specific fix for tall phones (e.g. iPhone 14 Pro Max): center hero content vertically while keeping space for navbar/notch */
+@media (max-width: 430px) and (min-height: 800px) {
+    .hero {
+        /* allow safe-area for notch and keep a small offset for navbar */
+        padding-top: calc(env(safe-area-inset-top, 20px) + 56px) !important;
+        min-height: calc(100vh - (env(safe-area-inset-top, 20px) + 56px)) !important;
+        align-items: center !important; /* vertically center content */
+    }
+
+    .hero-content {
+        width: 100%;
+        text-align: center;
+        padding: 0 1rem;
+        transform: none !important;
+        margin-top: 0.25rem;
+    }
+
+    .hero h1 { font-size: 2.6rem; line-height: 1.05; }
+    .hero p  { font-size: 1rem; }
+    .hero .btn-primary { margin-top: 1.6rem; }
+}
+
+/* Modal: horizontal layout on mobile for resultados pessoal only */
+@media (max-width: 600px) {
+    .modal.modal--credenciais .modal-content {
+        display: flex;
+        flex-direction: row;
+        gap: 0.6rem;
+        align-items: center;
+        justify-content: center;
+        width: 94vw;
+        max-width: 94vw;
+        max-height: 60vh;
+        padding: 0.6rem;
+        overflow: hidden;
+        text-align: left;
+    }
+
+    .modal.modal--credenciais .modal-img {
+        max-width: 60%;
+        max-height: 100%;
+        width: auto;
+        height: auto;
+        border-radius: 6px;
+        object-fit: cover;
+        box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    }
+
+    .modal.modal--credenciais .modal-caption {
+        max-width: 36%;
+        color: rgba(255,255,255,0.95);
+        font-size: 0.95rem;
+        overflow: auto;
+        line-height: 1.2;
+    }
+
+    .modal.modal--credenciais .modal-close {
+        top: -32px;
+        right: 0;
+    }
+}
