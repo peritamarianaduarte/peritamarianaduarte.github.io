@@ -107,13 +107,13 @@ document.addEventListener('DOMContentLoaded', () => {
             title: 'Mentoria em Perícia',
             services: [
                 '• Mentoria Individual – Elétrica',
-                'Unitário: R$ 2.000,00 | Completo: R$ 5.000,00',
+                'Unitário: 10X de R$199,90 | Completo: 12X de R$ 399,90',
                 '<br>',
                 '• Mentoria Individual – Água e Saneamento',
-                'Unitário: R$ 1.600,00 | Completo: R$ 4.000,00',
+                'Unitário: 10X de R$159,90 | Completo: 12X de R$329,90',
                 '<br>',
                 '• Mentoria em Grupo',
-                'Essencial: R$ 1.500,00 | Completo: R$ 2.200,00'
+                'Essencial: 10X DE R$ 149,90 | Completo: 12X de R$ 179,90',
 
             ],
             values: 'Para detalhes sobre valores, condições de pagamento e prazos, favor entrar em contato via WhatsApp.'
@@ -121,13 +121,9 @@ document.addEventListener('DOMContentLoaded', () => {
         'mentoria-mercado': {
             title: 'Mentoria de Ingresso no Mercado',
             services: [
-                '• Sessão individual - R$790,99',
+                '• Sessão individual - 10X de R$79,90',
                 '<br>',
-                '• Sessão em Grupo - R$1.500,00',
-                '<br>',
-                '• Sessão em Grupo - R$2.000,00',
-                '<br>',
-                '• Vantagem exclusiva - 50% do valor investido poderá ser abatido em futura mentoria técnica individual.'
+                '• Vantagem exclusiva - 30% do valor investido poderá ser abatido em futura mentoria técnica individual.'
             ],
             values: 'Para detalhes sobre valores, condições de pagamento e prazos, favor entrar em contato via WhatsApp.'
         },
